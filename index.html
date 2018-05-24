@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Checkout example for Bootstrap</title>
+    <title>Ejercicio Estudiante</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,8 @@
       <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="bootstrap-solid.svg" alt="" width="72" height="72">
         <h2>Checkout form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <small>Por favor completa los datos del formulario y ve como el enunciado va cambiando de acuerdo a lo ingresado.</small>
+        <br>
       </div>
 
       <div class="row">
@@ -81,9 +82,9 @@
           <form class="needs-validation" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="txtConcentracionE">Concentración Entrada:</label>
+                <label for="txtConcentracionE">Concentración Entrada de CO:</label>
                 <div class="input-group">                  
-                  <input type="number" class="form-control" id="txtConcentracionE" min="0" max="100" placeholder="80" value="80" required>
+                  <input type="number" class="form-control" id="txtConcentracionE" min="0" max="100" placeholder="80" value="80" step=".01" required>
                   <div class="input-group-append">
                    <span class="input-group-text" id="basic-addon1">%</span>
                   </div>
@@ -93,9 +94,9 @@
                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="txtConcentracionS">Concentración Salida:</label>
+                <label for="txtConcentracionS">Concentración Inicial de CO:</label>
                 <div class="input-group">                  
-                  <input type="number" class="form-control" id="txtConcentracionS" min="0" max="100" placeholder="0" value="0" required>
+                  <input type="number" class="form-control" id="txtConcentracionS" min="0" max="100" placeholder="0" value="0" step=".01" required>
                   <div class="input-group-append">
                    <span class="input-group-text" id="basic-addon2">%</span>
                   </div>
@@ -109,7 +110,7 @@
             <div class="mb-3">
               <label for="txtVelocidad">Velocidad Entrada/Salida:</label>
                 <div class="input-group">                  
-                  <input type="number" class="form-control" id="txtVelocidad" min="1" max="1000000" placeholder="0" value="1" required>
+                  <input type="number" class="form-control" id="txtVelocidad" min="1" max="1000000" placeholder="0" value="1" step=".01" required>
                   <div class="input-group-append">
                    <span class="input-group-text" id="basic-addon3">Litros/Segundos</span>
                   </div>
@@ -121,7 +122,7 @@
 
             <div class="mb-3">
               <label for="txtVolumen">Volumen del vehículo <span class="text-muted">(m<sup>3</sup>)</span></label>
-              <input type="number" class="form-control" id="txtVolumen" min="1" max="1000000" value="3" required>
+              <input type="number" class="form-control" id="txtVolumen" min="1" max="1000000" value="3" step=".01" required>
               <div class="invalid-feedback">
                 Ingrese un número de volumen valido.
               </div>
@@ -131,7 +132,7 @@
               <div class="col-md-6 mb-3">
                 <label for="txtConcentracionL">Concentración Letal:</label>
                 <div class="input-group">                  
-                  <input type="number" class="form-control" id="txtConcentracionL" min="0" max="100" placeholder="5" value="5" required>
+                  <input type="number" class="form-control" id="txtConcentracionL" min="0" max="100" placeholder="5" value="5" step=".01" required>
                   <div class="input-group-append">
                    <span class="input-group-text" id="basic-addon1">%</span>
                   </div>
@@ -142,100 +143,29 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="txtTiempo">Tiempo de espera <span class="text-muted">(minutos)</span></label>                                
-                  <input type="number" class="form-control" id="txtTiempo" min="0" max="3600" placeholder="5" value="5" required>                  
+                  <input type="number" class="form-control" id="txtTiempo" min="0" max="3600" placeholder="5" value="5" step=".01" required>                  
                   <div class="invalid-feedback">
                     Se requiere un número de tiempo valido.
                   </div>
                 </div>
             </div>
 
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St">
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country">
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state">
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" >
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
-              </div>
-            </div>
             <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input">
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input">
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="">
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="">
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
+            <p class="lead" style="text-align: justify;">Un estudiante de Ingeniería de Sistemas decide poner fin a su vida porque
+no entiende los sistemas dinámicos, para esto, construye un dispositivo que
+consta de un tubo que va del escape del carro al interior y una bomba que
+extrae el aire del vehículo y lo expulsa. Una vez que el carro se enciende el
+aire que se introduce en el carro tiene un <b><span id="L_ConcentracionE">80</span>%</b> de Monóxido de carbono (co)
+y la velocidad de entrada es de <b><span id="L_Velocidad">1</span> litro por segundo</b>; la bomba que extrae el
+aire, lo extrae a la misma velocidad. El interior del carro tiene <b><span id="L_Volumen">3</span> m<sup>3</sup></b>
+y el monóxido de carbono se distribuye homogéneamente dentro del
+vehículo.<br>
+El carro es blindado y no se puede abrir desde adentro, resulta que el
+estudiante se arrepiente, pero no puede abrir el carro desde adentro, pero
+este recuerda que tiene un celular y logra llamar a su madre, si una
+proporción del <b><span id="L_Letal">5</span>%</b> de monóxido de carbono es letal y la madre tarda <b><span id="L_Minutos">5</span>
+minutos</b> en llegar ¿el estudiante consigue salvarse?<br><br>Considere que la concentración inicial de CO dentro del vehículo es de <b><span id="L_ConcentracionS">0</span>%</b></p>
+            <h4 class="mb-3">Resultados</h4>
             <div class="row">
               <div class="col-md-3 mb-3">
                 <label for="cc-expiration">Expiration</label>
@@ -259,7 +189,7 @@
       </div>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <p class="mb-1">&copy; 2017-2018 Sistemas Dinámicos</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
           <li class="list-inline-item"><a href="#">Terms</a></li>
@@ -280,11 +210,9 @@
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
-
         window.addEventListener('load', function() {
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.getElementsByClassName('needs-validation');
-
           // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
@@ -299,7 +227,26 @@
       })();
 
       $(document).ready(function() {
-        alert("ready!");
+      	$("#txtConcentracionE").keyup(function(evt){
+      		$("#L_ConcentracionE").html(this.value);
+      	});
+      	$("#txtConcentracionS").keyup(function(evt){
+      		$("#L_ConcentracionS").html(this.value);
+      	});
+      	$("#txtVelocidad").keyup(function(evt){
+      		$("#L_Velocidad").html(this.value);
+      	});
+      	$("#txtVolumen").keyup(function(evt){
+      		$("#L_Volumen").html(this.value);
+      	});
+      	$("#txtTiempo").keyup(function(evt){
+      		$("#L_Minutos").html(this.value);
+      	});
+		$("#txtConcentracionL").keyup(function(evt){
+      		$("#L_Letal").html(this.value);
+      	});
+
+
         $("form").submit(function (event) {
             validateData();
             event.preventDefault();
@@ -307,7 +254,32 @@
       });
 
       function validateData(){
-      	alert("validado");
+      	let Ce = $("#txtConcentracionE").val().replace(/,/g,'.')/100;
+      	let Co = $("#txtConcentracionS").val().replace(/,/g,'.')/100;
+      	let Re = $("#txtVelocidad").val().replace(/,/g,'.');
+      	let Rs = $("#txtVelocidad").val().replace(/,/g,'.');
+      	let Vo = $("#txtVolumen").val().replace(/,/g,'.') * 1000;
+      	let T = $("#txtTiempo").val().replace(/,/g,'.') * 60;
+      	let CO = $("#txtConcentracionL").val().replace(/,/g,'.');
+
+      	let litrosTiempo = Ce*Vo+(Co-Ce)*Vo*Math.exp((-1/Vo)*T);
+
+      	alert(litrosTiempo);
+
+      	let cantidadCO = (litrosTiempo/Vo)*100;
+
+      	alert(cantidadCO);
+
+      	let cantidad = (CO*T)/cantidadCO;
+
+      	if(cantidadCO >= CO){
+      		alert("El estudiante muere, lo sentimos :(");
+      	}else if(cantidadCO == 0 || cantidadCO < CO){
+      		alert("Oye, el estudiante vive, muy bien. :D")
+      	}else{
+      		alert("Lo sentimos, obtenemos un dato no muy correcto para nosotros, solo miralo: "+cantidadCO);
+      	}
+
       }
     </script>
   </body>
