@@ -21,8 +21,8 @@
 
     <div class="container">
       <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
+        <img class="d-block mx-auto mb-4" src="vehiculo.svg" alt="" width="82" height="82">
+        <h2>El estudiante suicida</h2>
         <small>Por favor completa los datos del formulario y ve como el enunciado va cambiando de acuerdo a lo ingresado.</small>
         <br>
       </div>
@@ -151,6 +151,7 @@
             </div>
 
             <hr class="mb-4">
+            <h4 class="mb-3">Enunciado</h4>
             <p class="lead" style="text-align: justify;">Un estudiante de Ingeniería de Sistemas decide poner fin a su vida porque
 no entiende los sistemas dinámicos, para esto, construye un dispositivo que
 consta de un tubo que va del escape del carro al interior y una bomba que
@@ -165,22 +166,34 @@ estudiante se arrepiente, pero no puede abrir el carro desde adentro, pero
 este recuerda que tiene un celular y logra llamar a su madre, si una
 proporción del <b><span id="L_Letal">5</span>%</b> de monóxido de carbono es letal y la madre tarda <b><span id="L_Minutos">5</span>
 minutos</b> en llegar ¿el estudiante consigue salvarse?<br><br>Considere que la concentración inicial de CO dentro del vehículo es de <b><span id="L_ConcentracionS">0</span>%</b></p>
+			<hr class="mb-4">
             <h4 class="mb-3">Resultados</h4>
             <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="">
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
+              <div class="col-md-4 mb-4">
+                <label for="cc-expiration"><b>% CO <span id="L_Minutos2">5</span> min:</b></label>
+                <span id="LF_CantidadCO"></span>
               </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="">
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
+              <div class="col-md-4 mb-4">
+                <label for="cc-expiration"><b>Litros CO:</b></label>
+                <span id="LF_LitrosCO"></span>
               </div>
+         	</div>
+         	<div id="img_happy" style="display: none;">
+         		<img class="d-block mx-auto mb-4" src="happy.svg" alt="" width="170" height="170">
+				<p style="text-align: center;">¡Estuvo muuuy cerca!, el estudiante sobrevive.<br/>¡Felicidades!.</p>
+         	</div>
+         	<div id="img_dead" style="display: none;">
+         		<img class="d-block mx-auto mb-4" src="dead.svg" alt="" width="170" height="170">
+         		<p style="text-align: center;">Demasiado tarde, el estudiante ha muerto :( <br/>Lo sentimos.<br/>R.I.P.</p>
+         	</div>
+         	<div id="img_confuse" style="display: none;">
+         		<img class="d-block mx-auto mb-4" src="confuse.svg" alt="" width="170" height="170">
+         		<p style="text-align: center;">Espera un momento... quizá si... NO NO NO... y ¿sí?... espera ¿qué?,<br/> ¡Ahh, esto no tiene sentido! :'(</p>
+         	</div>
+            <div class="row">
+              <div class="col-md-12 mb-12">
+                <div>Con los datos suministrados se puede determinar que el estudiante no podría sobrevivir más de <b><span id="LF_Tiempo"></span></b> minutos.</div>
+              </div>              
             </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Validar Supervivencia</button>
@@ -219,6 +232,11 @@ minutos</b> en llegar ¿el estudiante consigue salvarse?<br><br>Considere que la
               if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
+                alert("Favor verifica los valores de los campos.");
+              }else{
+              	validateData();
+              	event.preventDefault();
+                event.stopPropagation();
               }
               form.classList.add('was-validated');
             }, false);
@@ -241,16 +259,12 @@ minutos</b> en llegar ¿el estudiante consigue salvarse?<br><br>Considere que la
       	});
       	$("#txtTiempo").keyup(function(evt){
       		$("#L_Minutos").html(this.value);
+      		$("#L_Minutos2").html(this.value);
       	});
 		$("#txtConcentracionL").keyup(function(evt){
       		$("#L_Letal").html(this.value);
       	});
 
-
-        $("form").submit(function (event) {
-            validateData();
-            event.preventDefault();
-        });
       });
 
       function validateData(){
@@ -264,20 +278,28 @@ minutos</b> en llegar ¿el estudiante consigue salvarse?<br><br>Considere que la
 
       	let litrosTiempo = Ce*Vo+(Co-Ce)*Vo*Math.exp((-1/Vo)*T);
 
-      	alert(litrosTiempo);
+      	$("#LF_LitrosCO").html(litrosTiempo + " lts.");
 
       	let cantidadCO = (litrosTiempo/Vo)*100;
 
-      	alert(cantidadCO);
+      	$("#LF_CantidadCO").html(cantidadCO + " %.");
 
       	let cantidad = (CO*T)/cantidadCO;
 
+      	$("#LF_Tiempo").html(cantidad/60);
+
+      	$("#img_happy").hide();
+      	$("#img_dead").hide();
+      	$("#img_confuse").hide();
       	if(cantidadCO >= CO){
-      		alert("El estudiante muere, lo sentimos :(");
+      		$("#img_dead").show();
+      		//alert("El estudiante muere, lo sentimos :(");
       	}else if(cantidadCO == 0 || cantidadCO < CO){
-      		alert("Oye, el estudiante vive, muy bien. :D")
+      		$("#img_happy").show();
+      		//alert("Oye, el estudiante vive, muy bien. :D");
       	}else{
-      		alert("Lo sentimos, obtenemos un dato no muy correcto para nosotros, solo miralo: "+cantidadCO);
+      		$("#img_confuse").show();
+      		//alert("Lo sentimos, obtenemos un dato no muy correcto para nosotros, solo miralo: "+cantidadCO);
       	}
 
       }
